@@ -47,9 +47,39 @@ class Todo {
 
 	removeTodo( reference, callback ){
 		callback = _.once( callback );
+
+		fetch( `/api/todo/${ reference }/remove`, {
+			"method": "DELETE",
+			"headers": {
+				"Content-Type": "application/json"
+			}
+		} )
+		.then( ( response ) => {
+			callback( null, response.json( ).data );
+
+		}, ( error ) => {
+			callback( error, false );
+		} );
 	}
 
 	editTodo( reference, title, value, callback ){
 		callback = _.once( callback );
+
+		fetch( `/api/todo/${ reference }/edit`, {
+			"method": "PUT",
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"body": {
+				"title": title,
+				"value": value
+			}
+		} )
+		.then( ( response ) => {
+			callback( null, response.json( ).data );
+
+		}, ( error ) => {
+			callback( error, false );
+		} );
 	}
 }

@@ -7,6 +7,11 @@ import React from "react";
 
 class TodoComponent extends React.PureComponent {
 	render( ){
-
+		return (
+			<ul
+			>
+					
+			</ul>
+		)
 	}
 }

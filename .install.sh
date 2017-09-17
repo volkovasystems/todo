@@ -1,8 +1,10 @@
 yarn add \
 babel-runtime \
 bootstrap@4.0.0-beta \
+express \
 jquery \
 lodash \
+mongoose \
 react \
 --save && \
 yarn add \

@@ -1,25 +1,26 @@
 {
-  "name": "todo",
-  "version": "0.0.0",
-  "description": "Simple ReactJS Todo Application",
-  "main": "todo.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/volkovasystems/todo.git"
-  },
-  "keywords": [
-    "simple",
-    "reactjs",
-    "todo",
-    "application"
-  ],
-  "author": "Richeve S. Bebedor",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/volkovasystems/todo/issues"
-  },
-  "homepage": "https://github.com/volkovasystems/todo#readme"
+	"name": "todo",
+	"version": "0.0.0",
+	"description": "Simple ReactJS Todo Application",
+	"main": "todo.js",
+	"scripts": {
+		"build": "webpack --config webpack.compact.js --progress",
+		"server": "node todo.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/volkovasystems/todo.git"
+	},
+	"keywords": [
+		"simple",
+		"reactjs",
+		"todo",
+		"application"
+	],
+	"author": "Richeve S. Bebedor",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/volkovasystems/todo/issues"
+	},
+	"homepage": "https://github.com/volkovasystems/todo#readme"
 }
