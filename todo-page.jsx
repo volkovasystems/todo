@@ -1,13 +1,11 @@
 "use strict";
 
 import _ from "lodash";
-import jquery from "jquery";
 
 import React from "react";
-import ReactDOM from "react-dom";
 
-import Todo from "todo-connect.js";
-import TodoComponent from "todo-component.jsx";
+import Todo from "./todo-connect.js";
+import TodoComponent from "./todo-component.jsx";
 
 class TodoPage extends React.PureComponent {
 	constructor( ){

@@ -5,7 +5,7 @@
 	"main": "todo.js",
 	"scripts": {
 		"build": "webpack --config webpack.compact.js --progress",
-		"server": "node todo.js"
+		"start": "node todo.js"
 	},
 	"repository": {
 		"type": "git",
@@ -22,5 +22,53 @@
 	"bugs": {
 		"url": "https://github.com/volkovasystems/todo/issues"
 	},
-	"homepage": "https://github.com/volkovasystems/todo#readme"
+	"homepage": "https://github.com/volkovasystems/todo#readme",
+	"dependencies": {
+		"babel-runtime": "^6.26.0",
+		"body-parser": "^1.18.1",
+		"bootstrap": "4.0.0-beta",
+		"compress": "^0.99.0",
+		"cookie-parser": "^1.4.3",
+		"express": "^4.15.4",
+		"jquery": "^3.2.1",
+		"lodash": "^4.17.4",
+		"method-override": "^2.3.9",
+		"mongoose": "^4.11.11",
+		"react": "^15.6.1",
+		"shortid": "^2.2.8",
+		"yargs": "^8.0.2"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-core": "^6.26.0",
+		"babel-loader": "^7.1.2",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-plugin-transform-decorators-legacy": "^1.3.4",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
+		"babel-plugin-transform-react-constant-elements": "^6.23.0",
+		"babel-plugin-transform-react-inline-elements": "^6.22.0",
+		"babel-plugin-transform-runtime": "^6.23.0",
+		"babel-preset-env": "^1.6.0",
+		"babel-preset-react": "^6.24.1",
+		"bower-resolve-webpack-plugin": "^1.0.4",
+		"css-loader": "^0.28.7",
+		"graceful-fs": "^4.1.11",
+		"gulp": "^3.9.1",
+		"gulp-babel": "^7.0.0",
+		"gulp-changed": "^3.1.0",
+		"gulp-debug": "^3.1.0",
+		"gulp-plumber": "^1.1.0",
+		"gulp-rename": "^1.2.2",
+		"gulp-replace": "^0.6.1",
+		"gulp-sourcemaps": "^2.6.1",
+		"nchunk": "^0.0.0",
+		"node-sass": "^4.5.3",
+		"plough": "^0.29.0",
+		"resolve-url-loader": "^2.1.0",
+		"sass-loader": "^6.0.6",
+		"source-map-loader": "^0.2.1",
+		"style-loader": "^0.18.2",
+		"url-loader": "^0.5.9",
+		"webpack": "^3.6.0"
+	}
 }

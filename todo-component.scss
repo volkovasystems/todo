@@ -1,7 +1,18 @@
 div.todo-component {
-	ul.todo-list {
-		li.todo-item {
+	display: flex;
+	flex-direction: row;
 
+
+	ul.todo-list {
+		display: flex;
+		flex-direction: row;
+		list-style: none;
+
+		li.todo-item {
+			display: flex;
+			flex-direction: row;
+
+			
 		}
 	}
 }

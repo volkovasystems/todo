@@ -1,11 +1,17 @@
 yarn add \
 babel-runtime \
+body-parser \
 bootstrap@4.0.0-beta \
+cookie-parser \
+compress \
 express \
 jquery \
 lodash \
+method-override \
 mongoose \
 react \
+shortid \
+yargs \
 --save && \
 yarn add \
 babel-cli \
@@ -29,6 +35,7 @@ gulp-plumber \
 gulp-rename \
 gulp-replace \
 gulp-sourcemaps \
+graceful-fs \
 nchunk \
 node-sass \
 plough \
@@ -38,7 +45,6 @@ source-map-loader \
 style-loader \
 url-loader \
 webpack \
-yargs \
 --dev && \
 bower install \
 bootstrap#v4.0.0-beta \

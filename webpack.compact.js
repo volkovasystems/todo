@@ -111,6 +111,7 @@ module.exports = function build( parameter ){
 			nchunk(
 				"lodash",
 				"jquery",
+				"bootstrap",
 				"react",
 				{ "extension": "deploy.js" }
 			),
