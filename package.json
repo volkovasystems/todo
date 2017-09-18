@@ -44,7 +44,7 @@
 		"react": "^15.6.1",
 		"react-dom": "^15.6.1",
 		"shortid": "^2.2.8",
-		"yargs": "^8.0.2"
+		"yargs": "^9.0.1"
 	},
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
