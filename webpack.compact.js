@@ -44,7 +44,14 @@ module.exports = function build( parameter ){
 			"rules": [
 				{
 					"test": /\.jsx$/,
-					"use": [ "babel-loader" ]
+					"use": [ "babel-loader" ],
+					"exclude": /node_modules|bower_components/
+				},
+
+				{
+					"test": /\.js$/,
+					"use": [ "babel-loader" ],
+					"exclude": /node_modules|bower_components/
 				},
 
 				{
@@ -110,9 +117,9 @@ module.exports = function build( parameter ){
 
 			nchunk(
 				"lodash",
-				"jquery",
-				"bootstrap",
 				"react",
+				"jquery",
+				"bootstrap,jquery",
 				{ "extension": "deploy.js" }
 			),
 

@@ -2,10 +2,17 @@
 	"name": "todo",
 	"version": "0.0.0",
 	"description": "Simple ReactJS Todo Application",
-	"main": "todo.js",
+	"main": "index.js",
 	"scripts": {
+		"database": "mongod --port 8001 --dbpath ./.database",
+		"pristine": "rsetmod clean && flxc execute ./.install.sh",
+		"reset": "rsetmod clean",
+		"clear": "rsetmod clean --clear",
 		"build": "webpack --config webpack.compact.js --progress",
-		"start": "node todo.js"
+		"rebuild": "npm run clear && npm run build",
+		"start": "node index.js",
+		"formal": "jesy apply '*.json'",
+		"deploy": "npm run pristine && npm run build && npm run formal"
 	},
 	"repository": {
 		"type": "git",
@@ -17,7 +24,7 @@
 		"todo",
 		"application"
 	],
-	"author": "Richeve S. Bebedor",
+	"author": "Richeve S. Bebedor <richeve.bebedor@gmail.com>",
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/volkovasystems/todo/issues"
@@ -27,7 +34,7 @@
 		"babel-runtime": "^6.26.0",
 		"body-parser": "^1.18.1",
 		"bootstrap": "4.0.0-beta",
-		"compress": "^0.99.0",
+		"compression": "^1.7.0",
 		"cookie-parser": "^1.4.3",
 		"express": "^4.15.4",
 		"jquery": "^3.2.1",
@@ -35,6 +42,7 @@
 		"method-override": "^2.3.9",
 		"mongoose": "^4.11.11",
 		"react": "^15.6.1",
+		"react-dom": "^15.6.1",
 		"shortid": "^2.2.8",
 		"yargs": "^8.0.2"
 	},

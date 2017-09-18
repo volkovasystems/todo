@@ -29,7 +29,13 @@ TODO.all( "*", ( request, response, next ) => {
 
 TODO.get( "/all", ( request, response ) => {
 	Todo
-		.find( { } )
+		.find( { }, [
+			"reference",
+			"title",
+			"value",
+			"timestamp",
+			"-_id"
+		] )
 		.sort( "timestamp" )
 		.lean( )
 		.exec( ( error, todoList ) => {

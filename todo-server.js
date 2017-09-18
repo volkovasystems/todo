@@ -3,7 +3,7 @@
 const _ = require( "lodash" );
 const express = require( "express" );
 const bodyParser = require( "body-parser" );
-const compress = require( "compression" );
+const compression = require( "compression" );
 const methodOverride = require( "method-override" );
 const cookieParser = require( "cookie-parser" );
 
@@ -60,11 +60,15 @@ SERVICE.on( "error", ( ) => {
 	console.error( "error on middleware", arguments );
 } );
 
-SERVICE.use( ( request, response ) => {
-	response
-		.status( 404 )
-		.json( {
-			"status": "undefined",
-			"data": "no operation"
-		} );
+SERVICE.use( express.static( __dirname ) );
+
+process.nextTick( ( ) => {
+	SERVICE.use( ( request, response ) => {
+		response
+			.status( 404 )
+			.json( {
+				"status": "undefined",
+				"data": "no operation"
+			} );
+	} );
 } );

@@ -1,10 +1,15 @@
 "use strict";
 
 import _ from "lodash";
+import jquery from "jquery";
 
 import React from "react";
 
 class TodoComponent extends React.PureComponent {
+	constructor( ){
+		super( );
+	}
+
 	render( ){
 		return (
 			<div
@@ -15,48 +20,50 @@ class TodoComponent extends React.PureComponent {
 				>
 					{
 						this.props.list.map( ( item ) => {
-							<li
-								key={ item.reference }
-								className="todo-item"
-							>
-								<div
-									className="todo-item-body"
+							return (
+								<li
+									key={ item.reference }
+									className="todo-item"
 								>
-									<h4>
-										{ item.title }
-									</h4>
-									<p>
-										{ item.value }
-									</p>
-								</div>
-								<div
-									className="todo-item-control"
-								>
-									<button
-										className="remove-todo-item material-icons"
-										title="Remove"
-										onClick={ ( event ) => {
-											this.props.onRemoveTodo( event, item.reference );
-										} }
+									<div
+										className="todo-item-body"
 									>
-										remove
-									</button>
-									<button
-										className="edit-todo-item material-icons"
-										title="Edit"
-										onClick={ ( event ) => {
-											this.props.onEditTodo(
-												event,
-												item.reference,
-												item.title,
-												item.value
-											);
-										} }
+										<h4>
+											{ item.title }
+										</h4>
+										<p>
+											{ item.value }
+										</p>
+									</div>
+									<div
+										className="todo-item-control"
 									>
-										edit
-									</button>
-								</div>
-							</li>
+										<button
+											className="remove-todo-item material-icons"
+											title="Remove"
+											onClick={ ( event ) => {
+												this.props.onRemoveTodo( event, item.reference );
+											} }
+										>
+											remove
+										</button>
+										<button
+											className="edit-todo-item material-icons"
+											title="Edit"
+											onClick={ ( event ) => {
+												this.props.onEditTodo(
+													event,
+													item.reference,
+													item.title,
+													item.value
+												);
+											} }
+										>
+											edit
+										</button>
+									</div>
+								</li>
+							);
 						} )
 					}
 				</ul>
@@ -64,3 +71,5 @@ class TodoComponent extends React.PureComponent {
 		);
 	}
 }
+
+export default TodoComponent;

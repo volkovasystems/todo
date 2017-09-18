@@ -2,5 +2,6 @@
 log
 *.log
 *.log.*
+*.deploy.*
 node_modules
 bower_components

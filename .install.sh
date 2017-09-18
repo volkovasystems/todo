@@ -3,13 +3,14 @@ babel-runtime \
 body-parser \
 bootstrap@4.0.0-beta \
 cookie-parser \
-compress \
+compression \
 express \
 jquery \
 lodash \
 method-override \
 mongoose \
 react \
+react-dom \
 shortid \
 yargs \
 --save && \

@@ -17,9 +17,12 @@ class Todo {
 			}
 		} )
 		.then( ( response ) => {
-			callback( null, response.json( ).data );
-
-		}, ( error ) => {
+			return response.json( );
+		} )
+		.then( ( result ) => {
+			callback( null, result.data );
+		} )
+		.catch( ( error ) => {
 			callback( error, [ ] );
 		} );
 	}
@@ -32,15 +35,18 @@ class Todo {
 			"headers": {
 				"Content-Type": "application/json"
 			},
-			"body": {
+			"body": JSON.stringify( {
 				"title": title,
 				"value": value
-			}
+			} )
 		} )
 		.then( ( response ) => {
-			callback( null, response.json( ).data );
-
-		}, ( error ) => {
+			return response.json( );
+		} )
+		.then( ( result ) => {
+			callback( null, result.data );
+		} )
+		.catch( ( error ) => {
 			callback( error, false );
 		} );
 	}
@@ -55,9 +61,12 @@ class Todo {
 			}
 		} )
 		.then( ( response ) => {
-			callback( null, response.json( ).data );
-
-		}, ( error ) => {
+			return response.json( );
+		} )
+		.then( ( result ) => {
+			callback( null, result.data );
+		} )
+		.catch( ( error ) => {
 			callback( error, false );
 		} );
 	}
@@ -70,16 +79,21 @@ class Todo {
 			"headers": {
 				"Content-Type": "application/json"
 			},
-			"body": {
+			"body": JSON.stringify( {
 				"title": title,
 				"value": value
-			}
+			} )
 		} )
 		.then( ( response ) => {
-			callback( null, response.json( ).data );
-
-		}, ( error ) => {
+			return response.json( );
+		} )
+		.then( ( result ) => {
+			callback( null, result.data );
+		} )
+		.catch( ( error ) => {
 			callback( error, false );
 		} );
 	}
 }
+
+export default Todo;

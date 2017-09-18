@@ -1,6 +1,7 @@
 "use strict";
 
 import _ from "lodash";
+import jquery from "jquery";
 
 import React from "react";
 
@@ -9,125 +10,131 @@ import TodoComponent from "./todo-component.jsx";
 
 class TodoPage extends React.PureComponent {
 	constructor( ){
-		this.todo = new Todo( );
+		super( );
 
-		this.setState( {
-			"mode": "idle",
-			"prompt": "",
-			"title": "",
-			"value": "",
-			"reference": "",
-			"list": [ ]
-		} );
+		this.todo = new Todo( );
 	}
 
 	getTodoList( callback ){
-		callback = _.once( callback );
+		callback = _.once( callback || _.noop );
 
-		todo.getTodoList( ( error, list ) => {
-			if( error ){
-				this.setState( {
-					"mode": "error",
-					"prompt": error.message
-				}, callback );
+		this.todo
+			.getTodoList( ( error, list ) => {
+				if( error ){
+					this.setState( {
+						"mode": "error",
+						"prompt": error.message
+					}, callback );
 
-			}else if( !_.isEmpty( list ) ){
-				this.setState( {
-					"list": list
-				}, callback );
+				}else if( !_.isEmpty( list ) ){
+					this.setState( {
+						"mode": "idle",
+						"list": list
+					}, callback );
 
-			}else{
-				this.setState( {
-					"mode": "notify",
-					"prompt": "todo list is empty",
-					"list": [ ]
-				}, callback );
-			}
-		} );
+				}else{
+					this.setState( {
+						"mode": "notify",
+						"prompt": "todo list is empty",
+						"list": [ ]
+					}, callback );
+				}
+			} );
 	}
 
 	addTodo( title, value, callback ){
-		callback = _.once( callback );
+		callback = _.once( callback || _.noop );
 
-		todo.addTodo(
-			title, value,
-			( error, status ) => {
-				if( error ){
-					this.setState( {
-						"mode": "error",
-						"prompt": error.message
-					}, callback );
+		this.todo
+			.addTodo(
+				title, value,
+				( error, status ) => {
+					if( error ){
+						this.setState( {
+							"mode": "error",
+							"prompt": error.message
+						}, callback );
 
-				}else if( status ){
-					callback( );
+					}else if( status ){
+						this.setState( {
+							"mode": "idle"
+						}, callback );
 
-				}else{
-					this.setState( {
-						"mode": "notify",
-						"prompt": "cannot add todo"
-					}, callback );
+					}else{
+						this.setState( {
+							"mode": "notify",
+							"prompt": "cannot add todo"
+						}, callback );
+					}
 				}
-			}
-		);
+			);
 	}
 
 	removeTodo( reference, callback ){
-		callback = _.once( callback );
+		callback = _.once( callback || _.noop );
 
-		todo.editTodo(
-			reference,
-			( error, status ) => {
-				if( error ){
-					this.setState( {
-						"mode": "error",
-						"prompt": error.message
-					}, callback );
+		this.todo
+			.removeTodo(
+				reference,
+				( error, status ) => {
+					if( error ){
+						this.setState( {
+							"mode": "error",
+							"prompt": error.message
+						}, callback );
 
-				}else if( status ){
-					callback( );
+					}else if( status ){
+						this.setState( {
+							"mode": "idle"
+						}, callback );
 
-				}else{
-					this.setState( {
-						"mode": "notify",
-						"prompt": "cannot remove todo"
-					}, callback );
+					}else{
+						this.setState( {
+							"mode": "notify",
+							"prompt": "cannot remove todo"
+						}, callback );
+					}
 				}
-			}
-		);
+			);
 	}
 
 	editTodo( reference, title, value, callback ){
-		callback = _.once( callback );
+		callback = _.once( callback || _.noop );
 
-		todo.editTodo(
-			reference, title, value,
-			( error, status ) => {
-				if( error ){
-					this.setState( {
-						"mode": "error",
-						"prompt": error.message
-					}, callback );
+		this.todo
+			.editTodo(
+				reference, title, value,
+				( error, status ) => {
+					if( error ){
+						this.setState( {
+							"mode": "error",
+							"prompt": error.message
+						}, callback );
 
-				}else if( status ){
-					callback( );
+					}else if( status ){
+						this.setState( {
+							"mode": "idle"
+						}, callback );
 
-				}else{
-					this.setState( {
-						"mode": "notify",
-						"prompt": "cannot edit todo"
-					}, callback );
+					}else{
+						this.setState( {
+							"mode": "notify",
+							"prompt": "cannot edit todo"
+						}, callback );
+					}
 				}
-			}
-		);
+			);
 	}
 
 	refresh( callback ){
+		callback = _.once( callback || _.noop );
+
 		this.getTodoList( ( ) => {
 			this.setState( {
 				"title": "",
 				"value": "",
 				"reference": ""
-			}, _.once( callback ) );
+			}, callback );
 		} );
 	}
 
@@ -171,7 +178,7 @@ class TodoPage extends React.PureComponent {
 	onSaveTodo( event ){
 		event.preventDefault( );
 
-		let mode = this.state.mode;
+		const mode = this.state.mode;
 
 		if( mode === "add" ){
 			this.addTodo(
@@ -200,7 +207,20 @@ class TodoPage extends React.PureComponent {
 		this.refresh( );
 	}
 
+	componentWillMount( ){
+		this.setState( {
+			"mode": "idle",
+			"prompt": "",
+			"title": "",
+			"value": "",
+			"reference": "",
+			"list": [ ]
+		} );
+	}
+
 	render( ){
+		const mode = this.state.mode;
+
 		return (
 			<div
 				className="todo-page"
@@ -238,56 +258,76 @@ class TodoPage extends React.PureComponent {
 							<input
 								type="text"
 								ref={ ( inputTitle ) => { this.inputTitle = inputTitle; } }
+								defaultValue={ this.state.title }
 							/>
 							<textarea
 								ref={ ( inputValue ) => { this.inputValue = inputValue; } }
-							>
-							</textarea>
+								defaultValue={ this.state.value }
+							/>
 						</div>
 					)
 					: undefined
 				}
-				<TodoComponent
-					list={ this.state.list }
-					onEditTodo={ this.onEditTodo }
-					onRemoveTodo={ this.onRemoveTodo }
-				>
-				</TodoComponent>
+				{
+					( mode !== "add" && mode !== "edit" )
+					? <TodoComponent
+						list={ this.state.list }
+						onEditTodo={ ( event, reference, title, value ) => {
+							this.onEditTodo( event, reference, title, value );
+						} }
+						onRemoveTodo={ ( event, reference ) => {
+							this.onRemoveTodo( event, reference );
+						} }
+					>
+					</TodoComponent>
+					: undefined
+				}
 				<div
 					className="todo-control"
 				>
 					{
-						(
-							mode === "add"
-							|| mode === "edit"
-						)
-						? (
+						( mode === "add" || mode === "edit" )
+						? [
 							<button
-								onClick={ this.onSaveTodo }
+								onClick={ ( event ) => {
+									this.onSaveTodo( event );
+								} }
 							>
 								Save
-							</button>
+							</button>,
 							<button
-								onClick={ this.onCancelTodo }
+								onClick={ ( event ) => {
+									this.onCancelTodo( event );
+								} }
 							>
 								Cancel
 							</button>
-						)
-						: (
+						]
+						: [
 							<button
-								onClick={ this.onAddTodo }
+								onClick={ ( event ) => {
+									this.onAddTodo( event );
+								} }
 							>
 								Add
-							</button>
+							</button>,
 							<button
-								onClick={ this.onRefreshTodo }
+								onClick={ ( event ) => {
+									this.onRefreshTodo( event );
+								} }
 							>
 								Refresh
 							</button>
-						)
+						]
 					}
 				</div>
 			</div>
 		);
 	}
+
+	componentDidMount( ){
+		this.refresh( );
+	}
 }
+
+export default TodoPage;
