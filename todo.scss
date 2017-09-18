@@ -1,2 +1,6 @@
 @import "./todo-component.scss";
 @import "./todo-page.scss";
+
+body {
+	overflow-x: hidden;
+}
