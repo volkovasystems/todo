@@ -9,12 +9,9 @@ Simple ReactJS Todo Application
 3. `npm install jesy@latest --global`
 
 ### Install
-* Install `flxc` globally, run `npm install flxc@latest --global`
-
-1. Run `flxc execute ./.install`
+* Run `npm run pristine`
 
 ### Develop
-* Install `rsetmod` globally, run `npm install rsetmod@latest --global`
 * Run `npm run build`
 
 ### Deploy

@@ -1,8 +1,3 @@
-.babelrc
+.*/
 *.sh
 *.cmd
-*.html
-!index.html
-test.*
-webpack.*
-*.deploy.*
