@@ -4,13 +4,14 @@
 	"description": "Simple ReactJS Todo Application",
 	"main": "index.js",
 	"scripts": {
-		"database": "mongod --port 8001 --dbpath ./.database",
+		"database": "mkdir ./.database && mongod --port 8001 --dbpath ./.database",
 		"pristine": "rsetmod clean && flxc execute ./.install.sh",
 		"reset": "rsetmod clean",
 		"clear": "rsetmod clean --clear",
 		"build": "webpack --config webpack.compact.js --progress",
 		"rebuild": "npm run clear && npm run build",
-		"start": "node index.js",
+		"start:local": "node index.js",
+		"start": "export NODE_ENV=production && node index.js",
 		"formal": "jesy apply '*.json'",
 		"deploy": "npm run pristine && npm run build && npm run formal"
 	},
