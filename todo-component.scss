@@ -54,6 +54,10 @@ div.todo-component {
 					padding-left: 5px;
 					word-break: break-all;
 				}
+
+				&:hover {
+					padding-left: 10px;
+				}
 			}
 
 			div.todo-item-control {

@@ -4,8 +4,8 @@
 	"description": "Simple ReactJS Todo Application",
 	"main": "index.js",
 	"scripts": {
-		"database": "mkdir ./.database && mongod --port 8001 --dbpath ./.database",
-		"pristine": "rsetmod clean && flxc execute ./.install.sh",
+		"database": "mkdir ./.database || mongod --bind_ip 127.0.0.1 --port 8001 --dbpath ./.database",
+		"pristine": "rsetmod clean && flxc execute ./.install",
 		"reset": "rsetmod clean",
 		"clear": "rsetmod clean --clear",
 		"build": "webpack --config webpack.compact.js --progress",
@@ -33,7 +33,7 @@
 	"homepage": "https://github.com/volkovasystems/todo#readme",
 	"dependencies": {
 		"babel-runtime": "^6.26.0",
-		"body-parser": "^1.18.1",
+		"body-parser": "^1.18.2",
 		"bootstrap": "4.0.0-beta",
 		"compression": "^1.7.0",
 		"cookie-parser": "^1.4.3",
@@ -41,7 +41,7 @@
 		"jquery": "^3.2.1",
 		"lodash": "^4.17.4",
 		"method-override": "^2.3.9",
-		"mongoose": "^4.11.11",
+		"mongoose": "^4.11.12",
 		"react": "^15.6.1",
 		"react-dom": "^15.6.1",
 		"shortid": "^2.2.8",

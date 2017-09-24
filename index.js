@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise;
 
 const parameter = require( "yargs" ).argv;
 
-let DATABASE_URI = "mongodb://0.0.0.0:8001/todo-database";
+let DATABASE_URI = "mongodb://127.0.0.1:8001/todo-database";
 if( parameter.production || process.env.NODE_ENV == "production" ){
 	DATABASE_URI = "mongodb://todouser:todouser12345@ds141264.mlab.com:41264/todo-database"
 }
