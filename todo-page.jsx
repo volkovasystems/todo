@@ -221,6 +221,10 @@ class TodoPage extends React.PureComponent {
 	render( ){
 		const mode = this.state.mode;
 
+		// const promptStyle = ( mode === "error" )
+		// 	? "bg-danger"
+		// 	: "bg-" ;
+
 		return (
 			<div
 				className="todo-page"
@@ -228,6 +232,17 @@ class TodoPage extends React.PureComponent {
 				<h1>
 					Todo
 				</h1>
+				{
+					( mode === "prompt" || mode === "error" )
+					? (
+						<div
+							className="prompt-todo"
+						>
+							{ this.state.prompt }
+						</div>
+					)
+					: undefined
+				}
 				{
 					( mode === "add" )
 					? (
